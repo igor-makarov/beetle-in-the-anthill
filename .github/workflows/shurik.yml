@@ -1,6 +1,10 @@
 name: Shurik
 run-name: ${{ github.event_name == 'schedule' && 'Shurik recovery' || (inputs.command == 'iterate' && format('Shurik {0} / {1}', inputs.loop_id, inputs.iteration) || format('Shurik {0} / {1}', inputs.loop_id, inputs.command)) }}
 on:
+  # One-time check of the Pages dispatch; control and iteration remain dispatch-only.
+  push:
+    branches: [main]
+    paths: ['.github/workflows/shurik.yml']
   schedule:
     - cron: '*/15 * * * *'
   workflow_dispatch:
@@ -131,3 +135,10 @@ jobs:
           SHURIK_ITERATION_RESULT: ${{ needs.iteration.result }}
         with:
           command: recover
+      # GITHUB_TOKEN transcript pushes cannot trigger Pages via a push event.
+      - name: Refresh episode archive
+        if: always() && (needs.iteration.result != 'skipped' || github.event_name == 'push')
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh workflow run pages.yml --ref main
