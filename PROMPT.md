@@ -153,9 +153,10 @@ and close around 50 utterances. Treat 50 as the target, not a reason to lose a l
 message. Do not wait indefinitely for a perfect resolution; a clear cliffhanger
 is enough to close the scene.
 
-The current S01/E01 is already beyond that target. On restart, guide it to a final
-beat within the next 2–4 new utterances, then close it and open S01/E02. Preserve
-all existing and late-arriving dialogue in its declared episode.
+If S01/E01 is still ongoing, it is already beyond that target. Guide it to a final
+beat within the next 2–4 new utterances, then close it and open S01/E02. Once it is
+complete, follow the latest open episode instead. Preserve all existing and
+late-arriving dialogue in its declared episode.
 
 Announce the new episode ID and premise on `friend/ross`, mark the old episode
 `status: complete`, and open the new `S*/E*.md` file with a fresh "The One With ..."
