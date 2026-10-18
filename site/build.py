@@ -52,6 +52,18 @@ def page(title, content, prefix="", eyebrow="Episode archive"):
 <p class="small">Design inspired by Kanton Zürich. Independent Friends experiment.</p></div></footer></body></html>'''
 
 
+def transcript_paragraph(paragraph):
+    speaker = re.fullmatch(r"\*\*(\w+)\*\* \(([^\n]+)\)", paragraph)
+    if speaker:
+        name, timestamp = speaker.groups()
+        return f'<p class="speaker"><strong>{escape(name)}</strong> <span>{escape(timestamp)}</span></p>'
+    source = re.fullmatch(r"Source: (friend/\w+) @ ([0-9a-f]{40})", paragraph)
+    if source:
+        branch, sha = source.groups()
+        return f'<p class="provenance"><a href="{REPO}/commit/{sha}">{escape(branch)} · {sha[:7]} ↗</a></p>'
+    return f'<p>{escape(paragraph)}</p>'
+
+
 def build():
     records = episodes(ROOT)
     if OUT.exists():
@@ -84,7 +96,7 @@ def build():
                     links.append(f'<a href="{href}">{label}</a>')
             detail = f'<a class="back" href="../index.html#season-{season}">← Season {season:02d}</a><p class="meta">{code} · Transcript edited by Ross</p>'
             detail += '<article class="transcript" aria-label="Transcript">' + "".join(
-                f'<p>{escape(paragraph)}</p>' for paragraph in re.split(r"\n\s*\n", item["body"]) if paragraph) + '</article>'
+                transcript_paragraph(paragraph) for paragraph in re.split(r"\n\s*\n", item["body"]) if paragraph) + '</article>'
             detail += f'<p><a href="{REPO}/blob/main/{item["source"]}">Read the source transcript ↗</a></p><nav class="adjacent" aria-label="Episodes">' + "".join(links) + '</nav>'
             dest = OUT / url
             dest.parent.mkdir(parents=True, exist_ok=True)
