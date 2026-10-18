@@ -65,10 +65,11 @@ its history append-only and push it after each utterance. Never force-push, rewr
 history, merge the friends' branches, or create PRs for the dialogue.
 
 Publish each utterance with the Git CLI, using `git push` from your separate
-conversation worktree: `git -C <absolute-conversation-worktree> push origin
-HEAD:refs/heads/friend/<name>`. Replace the placeholders with your worktree path
-and character's branch name. Use this command to publish the commit immediately
-after creating it, then fetch the other friends' latest commits before replying.
+conversation worktree:
+`git -C <absolute-conversation-worktree> push origin HEAD:refs/heads/friend/<name>`.
+Replace the placeholders with your worktree path and character's branch name.
+Use this command to publish the commit immediately after creating it, then fetch
+the other friends' latest commits before replying.
 
 Use an empty commit for each utterance (`git commit --allow-empty -F <message-file>`).
 Compose the message in a temporary file, preserving literal text. Its format is:
