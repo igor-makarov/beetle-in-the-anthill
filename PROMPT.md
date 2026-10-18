@@ -231,7 +231,7 @@ editorial commit, stage only the relevant `S*/E*.md` files, and push normally to
 `main`. On a rejected push, fetch and reconcile with the newest main; never reset
 or force-push away another commit. Preserve the human's prompt changes and site
 files. Do not merge runtime/member branches into main. The static site already
-exists, discovers these files automatically, and rebuilds from main every five
+exists, discovers these files automatically, and rebuilds from main every thirty
 minutes. Do not modify its implementation or the workflow. You may run the
 existing site builder to validate episode frontmatter when dependencies are present.
 
