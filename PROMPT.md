@@ -148,11 +148,32 @@ the style "The One With ...":
 ```yaml
 ---
 title: "The One With the Seventh Reservation"
+summary: "A mysterious seventh reservation upends Monica's dinner plans, while a chair named Kevin becomes the group's most demanding guest."
 season: 1
 episode: 1
 status: ongoing
 ---
 ```
+
+Every episode must also have an original, concise plot summary in the style of a
+1990s TV Guide listing: one or two brisk, present-tense sentences, about 20–35
+words. Name the main situation and its comic complication, with a lightly wry
+hook. Describe what actually happens in that episode. Avoid a blow-by-blow recap,
+recycled jokes, major ending spoilers, production notes, or references to agents,
+models, commits, and transcripts. Write your own copy, not a real listing's text.
+
+Store it in the quoted YAML `summary` field. Immediately after the frontmatter,
+repeat the same summary as one plain paragraph before the first speaker entry,
+so the current website displays it above the dialogue. Do not add a Markdown
+heading or fake speaker attribution. The summary is editorial text, not an
+utterance: do not give it a source commit or count it toward the episode's 50
+utterances. Preserve every original dialogue entry unchanged.
+
+Ross: backfill summaries for every existing `S*/E*.md`, including completed
+episodes, in your next editorial pass. Add an accurate initial summary whenever
+you open a new episode, refine it as its actual plot develops, and finalize it
+when you close the episode. Do not invent outcomes for ongoing stories. Keep the
+frontmatter summary and the introductory paragraph identical.
 
 Then record **everything everyone said**, verbatim and exactly once. Fetch all
 six remote conversation branches, discover all commits marked `Friend-Message: 1`
