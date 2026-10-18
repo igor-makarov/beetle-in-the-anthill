@@ -4,6 +4,7 @@ from html import escape
 from pathlib import Path
 import re
 import shutil
+import xml.etree.ElementTree as ET
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -36,8 +37,12 @@ def episodes(root):
             raise ValueError(f"{path}: title must begin 'The One With '")
         if min(season, episode) < 1 or (season, episode) in identities:
             raise ValueError(f"{path}: invalid or duplicate episode number")
+        summary = meta.get("summary") or ""
+        if not isinstance(summary, str):
+            raise ValueError(f"{path}: summary must be text")
         identities.add((season, episode))
         result.append(dict(season=season, episode=episode, title=title,
+                           summary=' '.join(summary.split()),
                            source=path.relative_to(root).as_posix(), body=parts[2].strip()))
     return sorted(result, key=lambda item: (item["season"], item["episode"]))
 
@@ -48,7 +53,7 @@ def page(title, content, prefix="", eyebrow="Episode archive"):
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Six friends. One ongoing story. An archive of original conversations.">
 <title>{escape(title)} · Friends, committed</title><link rel="stylesheet" href="{prefix}assets/style.css">
-<link rel="icon" href="{prefix}assets/mark.svg" type="image/svg+xml"><script src="{prefix}assets/clean-url.js" defer></script></head>
+<link rel="icon" href="{prefix}assets/favicon-six-dots.svg" type="image/svg+xml" sizes="any"><script src="{prefix}assets/clean-url.js" defer></script></head>
 <body><a class="skip" href="#content">Skip to content</a>
 <header class="masthead"><a class="brand" href="{home}"><img src="{prefix}assets/mark.svg" width="48" height="32" alt=""><span>Friends, committed<span class="brand-period">.</span></span></a>
 <nav aria-label="Main"><a href="{home}">The archive</a><a href="{REPO}">About ↗</a></nav></header>
@@ -104,6 +109,17 @@ def build():
     (OUT / "assets").mkdir(parents=True)
     for asset in (ROOT / "site" / "assets").iterdir():
         shutil.copyfile(asset, OUT / "assets" / asset.name)
+    # Use the page logo as the source of truth, centered on a square favicon canvas.
+    namespace = "http://www.w3.org/2000/svg"
+    ET.register_namespace('', namespace)
+    logo = ET.parse(ROOT / "site" / "assets" / "mark.svg").getroot()
+    x, y, width, height = map(float, logo.attrib['viewBox'].split())
+    side = max(width, height)
+    icon = ET.Element(f'{{{namespace}}}svg', {'viewBox': f'0 0 {side:g} {side:g}'})
+    dots = ET.SubElement(icon, f'{{{namespace}}}g', {
+        'transform': f'translate({(side-width)/2-x:g} {(side-height)/2-y:g})'})
+    dots.extend(logo)
+    ET.ElementTree(icon).write(OUT / "assets" / "favicon-six-dots.svg", encoding='utf-8')
     seasons = defaultdict(list)
     for item in records:
         seasons[item["season"]].append(item)
@@ -122,7 +138,8 @@ def build():
         for item in items:
             url = item["source"].replace(".md", ".html")
             code = f'Season {season:02d} / Episode {item["episode"]:02d}'
-            content += f'<li><a href="{url}"><span class="number">Episode {item["episode"]:02d}</span><span class="episode-title">{escape(item["title"])}</span><span class="arrow" aria-hidden="true">↗</span></a></li>'
+            summary = f'<span class="episode-summary">{escape(item["summary"])}</span>' if item['summary'] else ''
+            content += f'<li><a href="{url}"><span class="number">Episode {item["episode"]:02d}</span><span class="episode-copy"><span class="episode-title">{escape(item["title"])}</span>{summary}</span><span class="arrow" aria-hidden="true">↗</span></a></li>'
             idx = records.index(item)
             links = []
             for neighbor, label in [(idx - 1, "← Previous episode"), (idx + 1, "Next episode →")]:
