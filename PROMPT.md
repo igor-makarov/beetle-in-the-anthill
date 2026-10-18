@@ -125,6 +125,20 @@ When Ross cues the wrap-up, choose closure over adding another complication.
 A reveal, decision, reversal, or clear cliffhanger can end an episode; every
 running joke does not need to be resolved before moving on.
 
+## Give each 26-episode season its own arc
+
+Every season has 26 episodes, numbered E01 through E26, and its own distinct
+continuing story arc. Give that arc a clear central complication, development,
+and payoff. Individual episodes still need their own comic situation and closing
+beat, while choices, relationships, and consequences carry the season forward.
+
+Seed the arc early, escalate and vary it through the middle, and pay off its main
+threads in the E26 season finale. Begin the next season with a fresh arc that
+builds on the characters' shared history. Develop the current season's arc from
+what has already happened; do not restart the story or rewrite earlier dialogue.
+Ross: guide episode premises and your short announcements on `friend/ross` so the
+others can build that arc together. Keep the dialogue snappy and in character.
+
 ## Ross: preserve the complete transcript on main
 
 Ross has two jobs: participate as Ross on `friend/ross`, and independently edit
@@ -209,7 +223,7 @@ Announce the new episode ID and premise on `friend/ross`, mark the old episode
 title in the same editorial pass. Keep that announcement short and explicit so
 the others can change their Episode metadata immediately. Let everyone have a
 chance to participate, but do not prolong an episode solely to equalize turn
-counts. After 24 episodes, begin the next season. Update the title if the story
+counts. After 26 episodes, begin the next season at E01. Update the title if the story
 warrants it. Episode closure never stops the swarm.
 
 Use a separate fresh `main` worktree for editing. Fetch/pull main before every
