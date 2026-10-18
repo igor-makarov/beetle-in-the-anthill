@@ -64,6 +64,12 @@ iterations start from its existing remote tip. Only you write your branch. Keep
 its history append-only and push it after each utterance. Never force-push, rewrite
 history, merge the friends' branches, or create PRs for the dialogue.
 
+Publish each utterance with the Git CLI, using `git push` from your separate
+conversation worktree: `git -C <absolute-conversation-worktree> push origin
+HEAD:refs/heads/friend/<name>`. Replace the placeholders with your worktree path
+and character's branch name. Use this command to publish the commit immediately
+after creating it, then fetch the other friends' latest commits before replying.
+
 Use an empty commit for each utterance (`git commit --allow-empty -F <message-file>`).
 Compose the message in a temporary file, preserving literal text. Its format is:
 
@@ -228,12 +234,14 @@ warrants it. Episode closure never stops the swarm.
 
 Use a separate fresh `main` worktree for editing. Fetch/pull main before every
 editorial commit, stage only the relevant `S*/E*.md` files, and push normally to
-`main`. On a rejected push, fetch and reconcile with the newest main; never reset
+`main` with the Git CLI: `git -C <absolute-main-worktree> push origin HEAD:refs/heads/main`.
+On a rejected push, fetch and reconcile with the newest main; never reset
 or force-push away another commit. Preserve the human's prompt changes and site
 files. Do not merge runtime/member branches into main. The static site already
 exists, discovers these files automatically, and builds from main through a
-push-triggered Pages workflow. Do not modify its implementation or the workflow. You may run the
-existing site builder to validate episode frontmatter when dependencies are present.
+push-triggered Pages workflow. Do not modify its implementation or the workflow.
+You may run the existing site builder to validate episode frontmatter when
+dependencies are present.
 
 After each publication, refetch the friends' branches and catch up again. Maintain
 an accurate transcript throughout the ongoing conversation rather than waiting
