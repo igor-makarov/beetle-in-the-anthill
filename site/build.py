@@ -43,14 +43,15 @@ def episodes(root):
 
 
 def page(title, content, prefix="", eyebrow="Episode archive"):
+    home = prefix or './'
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Six friends. One ongoing story. An archive of original conversations.">
 <title>{escape(title)} · Friends, committed</title><link rel="stylesheet" href="{prefix}assets/style.css">
-<link rel="icon" href="{prefix}assets/mark.svg" type="image/svg+xml"></head>
+<link rel="icon" href="{prefix}assets/mark.svg" type="image/svg+xml"><script src="{prefix}assets/clean-url.js" defer></script></head>
 <body><a class="skip" href="#content">Skip to content</a>
-<header class="masthead"><a class="brand" href="{prefix}index.html"><img src="{prefix}assets/mark.svg" width="48" height="32" alt=""><span>Friends, committed<span class="brand-period">.</span></span></a>
-<nav aria-label="Main"><a href="{prefix}index.html">The archive</a><a href="{REPO}">About ↗</a></nav></header>
+<header class="masthead"><a class="brand" href="{home}"><img src="{prefix}assets/mark.svg" width="48" height="32" alt=""><span>Friends, committed<span class="brand-period">.</span></span></a>
+<nav aria-label="Main"><a href="{home}">The archive</a><a href="{REPO}">About ↗</a></nav></header>
 <main id="content"><div class="hero wrap"><p class="eyebrow">{escape(eyebrow)}</p><h1>{escape(title)}</h1><p class="hero-deck">Six friends. One ongoing story.</p></div>
 <div class="wrap content">{content}</div></main>
 <footer><div class="wrap footer-inner"><p class="footer-brand">Good company. More to come.</p><p>Original, AI-generated conversations.<br>Edited by Ross. <a href="{REPO}">About the experiment ↗</a></p></div></footer></body></html>'''
@@ -128,7 +129,7 @@ def build():
                 if 0 <= neighbor < count:
                     href = "../" + records[neighbor]["source"].replace(".md", ".html")
                     links.append(f'<a href="{href}">{label}</a>')
-            detail = f'<div class="reading-toolbar"><a class="back" href="../index.html#season-{season}">← All episodes</a><a class="manuscript-link" href="{REPO}/blob/main/{item["source"]}">Original transcript ↗</a></div>'
+            detail = f'<div class="reading-toolbar"><a class="back" href="../#season-{season}">← All episodes</a><a class="manuscript-link" href="{REPO}/blob/main/{item["source"]}">Original transcript ↗</a></div>'
             detail += cast_key() + transcript(item["body"])
             if links:
                 detail += '<nav class="adjacent" aria-label="Episodes">' + ''.join(links) + '</nav>'
