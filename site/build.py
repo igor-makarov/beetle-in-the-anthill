@@ -52,14 +52,14 @@ def page(title, content, prefix="", eyebrow="Episode archive"):
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Six friends. One ongoing story. An archive of original conversations.">
-<title>{escape(title)} · Friends, committed</title><link rel="stylesheet" href="{prefix}assets/style.css">
+<title>friends commited</title><link rel="stylesheet" href="{prefix}assets/style.css">
 <link rel="icon" href="{prefix}assets/favicon-six-dots.svg" type="image/svg+xml" sizes="any"><script src="{prefix}assets/clean-url.js" defer></script></head>
 <body><a class="skip" href="#content">Skip to content</a>
 <header class="masthead"><a class="brand" href="{home}"><img src="{prefix}assets/mark.svg" width="48" height="32" alt=""><span>Friends, committed<span class="brand-period">.</span></span></a>
-<nav aria-label="Main"><a href="{home}">The archive</a><a href="{REPO}">About ↗</a></nav></header>
+<nav aria-label="Main"><a href="{home}">The archive</a><a href="{REPO}">About</a></nav></header>
 <main id="content"><div class="hero wrap"><p class="eyebrow">{escape(eyebrow)}</p><h1>{escape(title)}</h1><p class="hero-deck">Six friends. One ongoing story.</p></div>
 <div class="wrap content">{content}</div></main>
-<footer><div class="wrap footer-inner"><p class="footer-brand">Good company. More to come.</p><p>Original, AI-generated conversations.<br>Edited by Ross. <a href="{REPO}">About the experiment ↗</a></p></div></footer></body></html>'''
+<footer><div class="wrap footer-inner"><p class="footer-brand">Good company. More to come.</p><p>Original, AI-generated conversations.<br>Edited by Ross. <a href="{REPO}">About the experiment</a></p></div></footer></body></html>'''
 
 
 def transcript(body):
@@ -95,7 +95,7 @@ def transcript(body):
             rendered.append(f'<div class="transcript-note">{dialogue}</div>')
             continue
         source_link = (f'<a class="source-link" href="{REPO}/commit/{sha}" '
-                       f'aria-label="Source for this line by {name}">Source <span aria-hidden="true">↗</span></a>') if sha else ''
+                       f'aria-label="Source for this line by {name}">Source</a>') if sha else ''
         rendered.append(f'<section class="turn voice-{name.lower()}" aria-label="{name}">'
                         f'<div class="turn-heading"><h2><span class="cast-dot" aria-hidden="true"></span>{name}</h2>'
                         f'{source_link}</div><div class="dialogue">{dialogue}</div></section>')
@@ -130,7 +130,7 @@ def build():
     content += cast_key()
     if records:
         content += '<nav class="season-nav" aria-label="Seasons">' + "".join(
-            f'<a href="#season-{number}">Season {number:02d} ↓</a>' for number in seasons) + '</nav>'
+            f'<a href="#season-{number}">Season {number:02d}</a>' for number in seasons) + '</nav>'
     else:
         content += '<div class="empty"><h2>The conversation starts here.</h2><p>The first episode will appear as Ross publishes the transcript.</p></div>'
     for season, items in seasons.items():
@@ -139,14 +139,14 @@ def build():
             url = item["source"].replace(".md", ".html")
             code = f'Season {season:02d} / Episode {item["episode"]:02d}'
             summary = f'<span class="episode-summary">{escape(item["summary"])}</span>' if item['summary'] else ''
-            content += f'<li><a href="{url}"><span class="number">Episode {item["episode"]:02d}</span><span class="episode-copy"><span class="episode-title">{escape(item["title"])}</span>{summary}</span><span class="arrow" aria-hidden="true">↗</span></a></li>'
+            content += f'<li><a href="{url}"><span class="number">Episode {item["episode"]:02d}</span><span class="episode-copy"><span class="episode-title">{escape(item["title"])}</span>{summary}</span></a></li>'
             idx = records.index(item)
             links = []
-            for neighbor, label in [(idx - 1, "← Previous episode"), (idx + 1, "Next episode →")]:
+            for neighbor, label in [(idx - 1, "Previous episode"), (idx + 1, "Next episode")]:
                 if 0 <= neighbor < count:
                     href = "../" + records[neighbor]["source"].replace(".md", ".html")
                     links.append(f'<a href="{href}">{label}</a>')
-            detail = f'<div class="reading-toolbar"><a class="back" href="../#season-{season}">← All episodes</a><a class="manuscript-link" href="{REPO}/blob/main/{item["source"]}">Original transcript ↗</a></div>'
+            detail = f'<div class="reading-toolbar"><a class="back" href="../#season-{season}">All episodes</a><a class="manuscript-link" href="{REPO}/blob/main/{item["source"]}">Original transcript</a></div>'
             detail += cast_key() + transcript(item["body"])
             if links:
                 detail += '<nav class="adjacent" aria-label="Episodes">' + ''.join(links) + '</nav>'
