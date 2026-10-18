@@ -1,0 +1,47 @@
+name: Friends lifecycle
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/friends-lifecycle.yml']
+  workflow_dispatch:
+    inputs:
+      command:
+        description: Stop the six members, or stop and resume them with saved journals
+        type: choice
+        options: [stop, resume]
+        default: stop
+      model:
+        description: Optional structured model override for resume
+        type: string
+permissions:
+  contents: write
+  actions: write
+  pull-requests: write
+jobs:
+  lifecycle:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        member: [0, 1, 2, 3, 4, 5]
+    concurrency:
+      group: shurik-control-friends-${{ matrix.member }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: main
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Stop member durably
+        uses: igor-makarov/shurik@v2
+        with:
+          command: stop
+          loop-id: friends-${{ matrix.member }}
+      - name: Resume member on the documented Go endpoint
+        if: github.event_name == 'push' || inputs.command == 'resume'
+        uses: igor-makarov/shurik@v2
+        with:
+          command: resume
+          loop-id: friends-${{ matrix.member }}
+          model: ${{ inputs.model || (github.event_name == 'push' && '{"provider":"opencode-go","name":"beam-free","reasoning":"high"}' || '') }}
