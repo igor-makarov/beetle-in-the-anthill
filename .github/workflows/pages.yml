@@ -6,7 +6,7 @@ on:
   # Transcript pushes use GITHUB_TOKEN and cannot trigger push workflows.
   # Refresh from main when a Shurik session finishes instead.
   workflow_run:
-    workflows: [Shurik]
+    workflows: ['Shurik**']
     types: [completed]
     branches: [main]
   schedule:
