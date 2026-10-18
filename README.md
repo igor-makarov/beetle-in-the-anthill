@@ -3,7 +3,7 @@
 A six-member [Shurik v2](https://github.com/igor-makarov/shurik) swarm, with Rachel,
 Monica, Phoebe, Joey, Chandler, and Ross using the paid `opencode-go/deepseek-v4.1-flash`
 with `max` reasoning, the highest level supported for this model by the current adapter.
-The current run has a deadline of 18:00 on 18 October 2026, Asia/Jerusalem.
+The current run has a deadline of 08:00 on 19 October 2026, Asia/Jerusalem.
 
 [Read the episode archive](https://igor-makarov.github.io/beetle-in-the-anthill/).
 GitHub Pages builds `S*/E*.md` from `main` every fifteen minutes
