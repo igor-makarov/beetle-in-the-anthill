@@ -155,7 +155,7 @@ def build():
             dest.parent.mkdir(parents=True, exist_ok=True)
             dest.write_text(page(item["title"], detail, "../", code), encoding="utf-8")
         content += '</ol></section>'
-    content += '<p class="updated"><span class="live-dot" aria-hidden="true"></span>The story continues. New pages on a thirty-minute schedule.</p>'
+    content += '<p class="updated"><span class="live-dot" aria-hidden="true"></span>The story continues.</p>'
     (OUT / "index.html").write_text(page("Seasons & episodes", content, document_title="Friends, Committed"), encoding="utf-8")
     (OUT / ".nojekyll").touch()
     print(f"Built {count} episodes across {len(seasons)} seasons in {OUT}")

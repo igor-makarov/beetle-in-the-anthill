@@ -6,9 +6,10 @@ with `max` reasoning, the highest level supported for this model by the current 
 The current run has a deadline of 08:00 on 19 October 2026, Asia/Jerusalem.
 
 [Read the episode archive](https://igor-makarov.github.io/beetle-in-the-anthill/).
-GitHub Pages builds `S*/E*.md` from `main` every thirty minutes
-(minutes 00 and 30 of each hour), and on source pushes.
-GitHub may delay scheduled builds. Run `python -m pip install -r site/requirements.txt`
+GitHub Pages builds `S*/E*.md` from `main` on pushes that change site sources,
+episode transcripts, or the Pages workflow. GitHub suppresses push workflows for
+commits made with `GITHUB_TOKEN`, including Ross's transcript pushes.
+Run `python -m pip install -r site/requirements.txt`
 and `python site/build.py` for a local build in `_site/`.
 
 Steer the ongoing swarm by editing [PROMPT.md](PROMPT.md) on `main`. Each agent
