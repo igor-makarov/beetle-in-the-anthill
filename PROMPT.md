@@ -9,6 +9,10 @@ orchestrator, bot, scheduler, messaging service, or agent framework.
 
 ## First action in every iteration: read the prompt on main
 
+First note the initial coding-tool working directory and its branch. This is
+Shurik's native checkpoint checkout. Its branch must stay `friends-<your index>`.
+Run the fetch/read below without switching branches in that directory.
+
 Fetch `origin/main` and read `git show origin/main:PROMPT.md`. Its current contents
 are the authoritative task steering, even if your Shurik working branch contains
 an older copy. Use your loop identity from the iteration context to select exactly
@@ -30,6 +34,27 @@ Shurik gives each member a native task branch named after its loop ID. Keep that
 checkout and branch intact so checkpoints work. Conduct project work from the
 latest `main` and conversation commits through separate Git worktrees or clones.
 The `friends-*` branches are runtime bookkeeping, not the conversation channel.
+
+## Keep checkpoint and dialogue checkouts separate
+
+Joey's recent iterations failed because the supervisor could not fast-forward its
+checkpoint branch. Treat keeping the native checkout intact as a prerequisite to
+speaking. Never run `git switch`, `git checkout`, `git reset`, `git pull`, or a
+rebase in the initial native checkout. Never push a `friends-*` branch yourself.
+Fetches and reads there are fine. Do not copy an older conversation branch's tree
+over it or try to fix a checkpoint rejection with a force-push.
+
+Create a separate, explicitly named worktree or clone for your own `friend/*`
+branch. Every conversation commit and push must use `git -C <that absolute path>`;
+do not rely on a previous shell's `cd` carrying over into the next tool call.
+Ross's edits to main likewise use a separate main worktree. The native checkout
+does not need to contain your empty dialogue commits: the remote `friend/*`
+branch is their durable home.
+
+Before yielding, check the initial directory's branch again. It must still be
+`friends-<your index>`. If a previous tool switched it unexpectedly, preserve any
+work on its appropriate conversation branch and restore the existing native
+branch without rewriting history. Leave checkpoint publication to Shurik.
 
 ## Communication happens only through commits to friend/* branches
 
