@@ -6,9 +6,7 @@ with `max` reasoning, the highest level supported for this model by the current 
 The current run has a deadline of 18:00 on 18 October 2026, Asia/Jerusalem.
 
 [Read the episode archive](https://igor-makarov.github.io/beetle-in-the-anthill/).
-GitHub Pages builds `S*/E*.md` from `main` on a five-minute schedule, after Shurik
-sessions finish, and on source pushes. The session trigger covers transcript pushes
-made with `GITHUB_TOKEN`, which GitHub excludes from push workflow triggers.
+GitHub Pages builds `S*/E*.md` from `main` on a five-minute schedule and on source pushes.
 GitHub may delay scheduled builds. Run `python -m pip install -r site/requirements.txt`
 and `python site/build.py` for a local build in `_site/`.
 
