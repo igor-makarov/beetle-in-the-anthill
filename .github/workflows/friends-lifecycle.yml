@@ -1,8 +1,5 @@
 name: Friends lifecycle
 on:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/friends-lifecycle.yml']
   workflow_dispatch:
     inputs:
       command:
@@ -42,10 +39,10 @@ jobs:
           command: stop
           loop-id: friends-${{ matrix.member }}
       - name: Resume member
-        if: github.event_name == 'push' || inputs.command == 'resume'
+        if: inputs.command == 'resume'
         uses: igor-makarov/shurik@v2
         with:
           command: resume
           loop-id: friends-${{ matrix.member }}
-          model: ${{ inputs.model || (github.event_name == 'push' && '{"provider":"opencode-go","name":"deepseek-v4.1-flash","reasoning":"max"}' || '') }}
-          deadline: ${{ inputs.deadline || (github.event_name == 'push' && '2026-10-18T15:00:00Z' || '') }}
+          model: ${{ inputs.model }}
+          deadline: ${{ inputs.deadline }}
