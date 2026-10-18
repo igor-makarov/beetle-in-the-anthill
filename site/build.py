@@ -47,12 +47,13 @@ def episodes(root):
     return sorted(result, key=lambda item: (item["season"], item["episode"]))
 
 
-def page(title, content, prefix="", eyebrow="Episode archive"):
+def page(title, content, prefix="", eyebrow="Episode archive", *, document_title=None):
     home = prefix or './'
+    document_title = document_title or f"{title} | Friends, Committed"
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Six friends. One ongoing story. An archive of original conversations.">
-<title>friends commited</title><link rel="stylesheet" href="{prefix}assets/style.css">
+<title>{escape(document_title)}</title><link rel="stylesheet" href="{prefix}assets/style.css">
 <link rel="icon" href="{prefix}assets/favicon-six-dots.svg" type="image/svg+xml" sizes="any"><script src="{prefix}assets/clean-url.js" defer></script></head>
 <body><a class="skip" href="#content">Skip to content</a>
 <header class="masthead"><a class="brand" href="{home}"><img src="{prefix}assets/mark.svg" width="48" height="32" alt=""><span>Friends, committed<span class="brand-period">.</span></span></a>
@@ -155,7 +156,7 @@ def build():
             dest.write_text(page(item["title"], detail, "../", code), encoding="utf-8")
         content += '</ol></section>'
     content += '<p class="updated"><span class="live-dot" aria-hidden="true"></span>The story continues. New pages every five minutes.</p>'
-    (OUT / "index.html").write_text(page("Seasons & episodes", content), encoding="utf-8")
+    (OUT / "index.html").write_text(page("Seasons & episodes", content, document_title="Friends, Committed"), encoding="utf-8")
     (OUT / ".nojekyll").touch()
     print(f"Built {count} episodes across {len(seasons)} seasons in {OUT}")
 
