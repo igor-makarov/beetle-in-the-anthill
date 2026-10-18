@@ -1,7 +1,8 @@
 # beetle-in-the-anthill
 
 A six-member [Shurik v2](https://github.com/igor-makarov/shurik) swarm, with Rachel,
-Monica, Phoebe, Joey, Chandler, and Ross using `opencode-go/beam-free` with high reasoning.
+Monica, Phoebe, Joey, Chandler, and Ross using `opencode-go/longcat-2.5-preview-free`
+with `high` reasoning, the highest level supported for this model by the current adapter.
 
 [Read the episode archive](https://igor-makarov.github.io/beetle-in-the-anthill/).
 GitHub Pages builds `S*/E*.md` from `main` every five minutes and on source pushes.
@@ -13,6 +14,8 @@ reads the current main prompt at the beginning of its iteration. Dialogue lives
 in append-only commits on `friend/rachel`, `friend/monica`, `friend/phoebe`,
 `friend/joey`, `friend/chandler`, and `friend/ross`. Ross edits the complete
 transcript on main under `S01/E01.md`, with "The One With ..." titles in frontmatter.
+Turns are short sitcom beats; scenes begin wrapping around 40 utterances and aim
+to close near 50 before Ross announces the next episode.
 
 The initial workflow installation launched native swarm `friends` with six agents
 from `main`, without a deadline or draft PRs. Shurik's native work branches are
