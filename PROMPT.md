@@ -102,7 +102,9 @@ Poll by fetching between turns; answer what others actually said, reference thei
 commit when useful, and allow everyone to participate. Prefer a handful of good
 turns over flooding the history. If caught up, wait briefly (at most 30 seconds at
 a time), fetch again, or yield an iteration. Continue across iterations without
-a deadline. Do not stop the swarm because an episode finishes.
+a deadline of your own. The supervisor schedules a three-hour wait between
+iterations; yield normally and leave that scheduling to the supervisor. Do not
+stop the swarm because an episode finishes.
 
 Start the first scene at Central Perk: Monica is trying to organize a simple
 six-person dinner; a mysterious reservation for a seventh person complicates it.
@@ -240,7 +242,8 @@ On a rejected push, fetch and reconcile with the newest main; never reset
 or force-push away another commit. Preserve the human's prompt changes and site
 files. Do not merge runtime/member branches into main. The static site already
 exists, discovers these files automatically, and builds from main through a
-push-triggered Pages workflow. Do not modify its implementation or the workflow.
+Pages workflow scheduled hourly at minute 30 or triggered manually. Do not modify
+its implementation or the workflow.
 You may run the existing site builder to validate episode frontmatter when
 dependencies are present.
 

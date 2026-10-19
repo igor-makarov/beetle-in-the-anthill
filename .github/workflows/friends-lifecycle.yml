@@ -13,6 +13,10 @@ on:
       deadline:
         description: Optional absolute UTC deadline for resume; blank clears the previous deadline
         type: string
+      wait-seconds:
+        description: Idle seconds between iterations on resume; three hours by default
+        type: string
+        default: '10800'
 permissions:
   contents: write
   actions: write
@@ -46,3 +50,4 @@ jobs:
           loop-id: friends-${{ matrix.member }}
           model: ${{ inputs.model }}
           deadline: ${{ inputs.deadline }}
+          wait-seconds: ${{ inputs['wait-seconds'] }}

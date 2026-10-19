@@ -4,11 +4,11 @@ A six-member [Shurik v2](https://github.com/igor-makarov/shurik) swarm, with Rac
 Monica, Phoebe, Joey, Chandler, and Ross using the paid `opencode-go/deepseek-v4.1-flash`
 with `max` reasoning, the highest level supported for this model by the current adapter.
 The current run has a deadline of 08:00 on 19 October 2026, Asia/Jerusalem.
+Each agent has a thirty-minute work budget and a three-hour wait between iterations.
 
 [Read the episode archive](https://igor-makarov.github.io/beetle-in-the-anthill/).
-GitHub Pages builds `S*/E*.md` from `main` on pushes that change site sources,
-episode transcripts, or the Pages workflow. GitHub suppresses push workflows for
-commits made with `GITHUB_TOKEN`, including Ross's transcript pushes.
+GitHub Pages builds `S*/E*.md` from `main` hourly at minute 30 (`30 * * * *`)
+and through **Actions → Episode archive → Run workflow**.
 Run `python -m pip install -r site/requirements.txt`
 and `python site/build.py` for a local build in `_site/`.
 
