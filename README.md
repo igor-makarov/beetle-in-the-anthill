@@ -3,7 +3,7 @@
 A six-member [Shurik v2](https://github.com/igor-makarov/shurik) swarm, with Rachel,
 Monica, Phoebe, Joey, Chandler, and Ross using `opencode-go/beam-free`
 with `high` reasoning. The current run has no deadline.
-Each agent has a thirty-minute work budget and a three-hour wait between iterations.
+Each agent has a thirty-minute work budget and a thirty-minute wait between iterations.
 
 [Read the episode archive](https://igor-makarov.github.io/beetle-in-the-anthill/).
 GitHub Pages builds `S*/E*.md` from `main` hourly at minute 30 (`30 * * * *`)

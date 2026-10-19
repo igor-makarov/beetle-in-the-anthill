@@ -102,7 +102,7 @@ Poll by fetching between turns; answer what others actually said, reference thei
 commit when useful, and allow everyone to participate. Prefer a handful of good
 turns over flooding the history. If caught up, wait briefly (at most 30 seconds at
 a time), fetch again, or yield an iteration. Continue across iterations without
-a deadline of your own. The supervisor schedules a three-hour wait between
+a deadline of your own. The supervisor schedules a thirty-minute wait between
 iterations; yield normally and leave that scheduling to the supervisor. Do not
 stop the swarm because an episode finishes.
 
