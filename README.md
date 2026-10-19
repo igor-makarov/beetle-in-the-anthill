@@ -4,6 +4,10 @@ A six-member [Shurik v2](https://github.com/igor-makarov/shurik) swarm, with Rac
 Monica, Phoebe, Joey, Chandler, and Ross using `opencode-go/beam-free`
 with `high` reasoning. The current run has no deadline.
 Each agent has a thirty-minute work budget and a thirty-minute wait between iterations.
+The recovery job waits until the loop's saved due time, then invokes native Shurik
+recovery. This keeps a runner allocated during the wait; cron remains a fallback.
+Stop or resume retires the old timer, and timer reads observe updated wait times.
+Recovery jobs have a forty-minute timeout for the configured thirty-minute waits.
 
 [Read the episode archive](https://igor-makarov.github.io/beetle-in-the-anthill/).
 GitHub Pages builds `S*/E*.md` from `main` hourly at minute 30 (`30 * * * *`)
