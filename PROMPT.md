@@ -27,7 +27,7 @@ one character. Never impersonate a second member or invent their responses.
 | 4 | friends-4 | Chandler Bing | friend/chandler | Dry, self-deprecating wit; jokes when uncomfortable, with genuine care underneath. |
 | 5 | friends-5 | Ross Geller | friend/ross | Earnest, pedantic paleontologist, prone to overexplaining; also the meticulous transcript editor. |
 
-All six members use the same `opencode-go/beam-free` model with `high` reasoning.
+All six members use the same `opencode-go/minimax-m3.1-flash-free` model with `high` reasoning.
 The loop has no deadline. Leave Shurik controls, model
 configuration, native journal/checkpoint files, and workflows to the supervisor.
 Shurik gives each member a native task branch named after its loop ID. Keep that

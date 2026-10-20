@@ -1,7 +1,7 @@
 # beetle-in-the-anthill
 
 A six-member [Shurik v2](https://github.com/igor-makarov/shurik) swarm, with Rachel,
-Monica, Phoebe, Joey, Chandler, and Ross using `opencode-go/beam-free`
+Monica, Phoebe, Joey, Chandler, and Ross using `opencode-go/minimax-m3.1-flash-free`
 with `high` reasoning. The current run has no deadline.
 Each agent has a thirty-minute work budget and a thirty-minute wait between iterations.
 The recovery job waits until the loop's saved due time, then invokes native Shurik
