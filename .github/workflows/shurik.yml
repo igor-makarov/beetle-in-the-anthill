@@ -1,9 +1,6 @@
 name: Shurik
-run-name: ${{ github.event_name == 'push' && 'Shurik friends / start' || (github.event_name == 'schedule' && 'Shurik recovery' || (inputs.command == 'iterate' && format('Shurik {0} / {1}', inputs.loop_id, inputs.iteration) || format('Shurik {0} / {1}', inputs.loop_id, inputs.command))) }}
+run-name: ${{ github.event_name == 'schedule' && 'Shurik recovery' || (inputs.command == 'iterate' && format('Shurik {0} / {1}', inputs.loop_id, inputs.iteration) || format('Shurik {0} / {1}', inputs.loop_id, inputs.command)) }}
 on:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/shurik.yml']
   schedule:
     - cron: '*/15 * * * *'
   workflow_dispatch:
@@ -19,7 +16,7 @@ on:
         required: true
         type: string
       model:
-        description: 'JSON model: {"provider":"openai","name":"gpt-6-sol","reasoning":"high"}; optional overrides on resume'
+        description: 'JSON model: {"provider":"opencode-go","name":"minimax-m3.1-flash-free","reasoning":"high"}; optional overrides on resume'
         type: string
       swarm:
         description: 'Start-only JSON: {"agents":4} or {"models":[...]} with optional shared model'
@@ -36,8 +33,9 @@ on:
         description: Work budget per iteration, 10–1800; Shurik defaults to 1800 on start
         type: string
       wait-seconds:
-        description: Idle seconds between iterations; Shurik defaults to 0 on start
+        description: Idle seconds between iterations; thirty minutes by default
         type: string
+        default: '1800'
       checkpoint-seconds:
         description: Checkpoint interval, 1–1800; Shurik defaults to 300 on start
         type: string
@@ -64,11 +62,11 @@ permissions:
   actions: write
 jobs:
   control:
-    if: (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.command != 'iterate')) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    if: github.event_name == 'workflow_dispatch' && inputs.command != 'iterate' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     concurrency:
-      group: shurik-control-${{ inputs.loop_id || 'friends' }}
+      group: shurik-control-${{ inputs.loop_id }}
       cancel-in-progress: false
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
@@ -79,12 +77,6 @@ jobs:
         uses: igor-makarov/shurik@v2
         with:
           inputs: ${{ toJSON(inputs) }}
-          command: ${{ inputs.command || 'start' }}
-          loop-id: ${{ inputs.loop_id || 'friends' }}
-          model: ${{ inputs.model || (github.event_name == 'push' && '{"provider":"opencode","name":"beam-free","reasoning":"high"}' || '') }}
-          swarm: ${{ inputs.swarm || (github.event_name == 'push' && '{"agents":6}' || '') }}
-          source-ref: ${{ inputs.source_ref || (github.event_name == 'push' && 'main' || '') }}
-          create-pr: ${{ inputs.create_pr || 'false' }}
       - name: Preserve emergency snapshot after publication failure
         if: failure()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -126,7 +118,7 @@ jobs:
     needs: [control, iteration]
     if: always() && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 40
     permissions:
       contents: write
       actions: write
@@ -136,6 +128,23 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
       - uses: igor-makarov/shurik@v2
+        env:
+          SHURIK_ITERATION_RESULT: ${{ needs.iteration.result }}
+        with:
+          command: recover
+      - name: Wait for this loop's next iteration
+        id: wait
+        if: github.event_name == 'workflow_dispatch' && inputs.command == 'iterate' && needs.iteration.result != 'skipped'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          SHURIK_WAIT_LOOP_ID: ${{ inputs.loop_id }}
+          SHURIK_WAIT_GENERATION: ${{ inputs.generation }}
+          SHURIK_WAIT_ITERATION: ${{ inputs.iteration }}
+        run: node .github/scripts/wait-for-shurik.cjs
+      - name: Recover after the saved wait
+        if: steps.wait.outputs.ready == 'true'
+        uses: igor-makarov/shurik@v2
         env:
           SHURIK_ITERATION_RESULT: ${{ needs.iteration.result }}
         with:

@@ -1,8 +1,5 @@
 name: Friends lifecycle
 on:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/friends-lifecycle.yml']
   workflow_dispatch:
     inputs:
       command:
@@ -13,6 +10,13 @@ on:
       model:
         description: Optional structured model override for resume
         type: string
+      deadline:
+        description: Optional absolute UTC deadline for resume; blank clears the previous deadline
+        type: string
+      wait-seconds:
+        description: Idle seconds between iterations on resume; thirty minutes by default
+        type: string
+        default: '1800'
 permissions:
   contents: write
   actions: write
@@ -38,10 +42,12 @@ jobs:
         with:
           command: stop
           loop-id: friends-${{ matrix.member }}
-      - name: Resume member on the documented Go endpoint
-        if: github.event_name == 'push' || inputs.command == 'resume'
+      - name: Resume member
+        if: inputs.command == 'resume'
         uses: igor-makarov/shurik@v2
         with:
           command: resume
           loop-id: friends-${{ matrix.member }}
-          model: ${{ inputs.model || (github.event_name == 'push' && '{"provider":"opencode-go","name":"beam-free","reasoning":"high"}' || '') }}
+          model: ${{ inputs.model }}
+          deadline: ${{ inputs.deadline }}
+          wait-seconds: ${{ inputs['wait-seconds'] }}
