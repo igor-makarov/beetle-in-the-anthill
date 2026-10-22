@@ -1,5 +1,8 @@
 name: Friends lifecycle
 on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/friends-lifecycle.yml]
   workflow_dispatch:
     inputs:
       command:
@@ -43,11 +46,11 @@ jobs:
           command: stop
           loop-id: friends-${{ matrix.member }}
       - name: Resume member
-        if: inputs.command == 'resume'
+        if: github.event_name == 'push' || inputs.command == 'resume'
         uses: igor-makarov/shurik@v2
         with:
           command: resume
           loop-id: friends-${{ matrix.member }}
-          model: ${{ inputs.model }}
+          model: ${{ github.event_name == 'push' && '{"provider":"opencode-go","name":"beam-free","reasoning":"high"}' || inputs.model }}
           deadline: ${{ inputs.deadline }}
-          wait-seconds: ${{ inputs['wait-seconds'] }}
+          wait-seconds: ${{ inputs['wait-seconds'] || '1800' }}
