@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "key": "40242752553-1",
+  "loopId": "friends-3",
+  "runId": "40242752553",
+  "attempt": 1,
+  "generation": 8,
+  "iteration": 450,
+  "command": "iterate",
+  "conclusion": "failure",
+  "url": "https://github.com/igor-makarov/beetle-in-the-anthill/actions/runs/40242752553",
+  "headSha": "42832cdaa045b47e534a6bcd59040696567e7755",
+  "startedAt": "2026-10-25T23:00:15Z",
+  "completedAt": "2026-10-25T23:01:19Z",
+  "collectedAt": "2026-10-25T23:01:52.328Z",
+  "interruptedOwner": false,
+  "jobs": [
+    {
+      "id": 121317891632,
+      "name": "iteration",
+      "conclusion": "failure",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "number": 2,
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "conclusion": "success"
+        },
+        {
+          "number": 3,
+          "name": "Run igor-makarov/shurik@v2",
+          "conclusion": "failure"
+        },
+        {
+          "number": 4,
+          "name": "Preserve emergency snapshot after publication failure",
+          "conclusion": "success"
+        },
+        {
+          "number": 7,
+          "name": "Post Run igor-makarov/shurik@v2",
+          "conclusion": "success"
+        },
+        {
+          "number": 8,
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "conclusion": "success"
+        },
+        {
+          "number": 9,
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ],
+      "log": {
+        "text": "l/.git.path /home/runner/work/_temp/git-credentials-14a08f4e-f498-429a-9bba-7ce482bab275.config\n2026-10-25T23:00:21.4131808Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/beetle-in-the-anthill/beetle-in-the-anthill/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-14a08f4e-f498-429a-9bba-7ce482bab275.config\n2026-10-25T23:00:21.4162882Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-14a08f4e-f498-429a-9bba-7ce482bab275.config\n2026-10-25T23:00:21.4191261Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-14a08f4e-f498-429a-9bba-7ce482bab275.config\n2026-10-25T23:00:21.4220276Z ##[endgroup]\n2026-10-25T23:00:21.4221866Z ##[group]Fetching the repository\n2026-10-25T23:00:21.4226526Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*\n2026-10-25T23:00:28.6285901Z From https://github.com/igor-makarov/beetle-in-the-anthill\n2026-10-25T23:00:28.6286641Z  * [new branch]          fobe                 -> origin/fobe\n2026-10-25T23:00:28.6287177Z  * [new branch]          friend/chandler      -> origin/friend/chandler\n2026-10-25T23:00:28.6287756Z  * [new branch]          friend/joey          -> origin/friend/joey\n2026-10-25T23:00:28.6288261Z  * [new branch]          friend/monica        -> origin/friend/monica\n2026-10-25T23:00:28.6288904Z  * [new branch]          friend/phoebe        -> origin/friend/phoebe\n2026-10-25T23:00:28.6289462Z  * [new branch]          friend/rachel        -> origin/friend/rachel\n2026-10-25T23:00:28.6357369Z  * [new branch]          friend/ross          -> origin/friend/ross\n2026-10-25T23:00:28.6358291Z  * [new branch]          friend/rriend/rachel -> origin/friend/rriend/rachel\n2026-10-25T23:00:28.6359074Z  * [new branch]          friends-0            -> origin/friends-0\n2026-10-25T23:00:28.6359693Z  * [new branch]          friends-1            -> origin/friends-1\n2026-10-25T23:00:28.6360285Z  * [new branch]          friends-2            -> origin/friends-2\n2026-10-25T23:00:28.6360881Z  * [new branch]          friends-3            -> origin/friends-3\n2026-10-25T23:00:28.6361638Z  * [new branch]          friends-4            -> origin/friends-4\n2026-10-25T23:00:28.6362336Z  * [new branch]          friends-5            -> origin/friends-5\n2026-10-25T23:00:28.6363021Z  * [new branch]          main                 -> origin/main\n2026-10-25T23:00:28.6363571Z  * [new branch]          phoebe               -> origin/phoebe\n2026-10-25T23:00:28.6364212Z  * [new branch]          shurik-control/friends-0 -> origin/shurik-control/friends-0\n2026-10-25T23:00:28.6364928Z  * [new branch]          shurik-control/friends-1 -> origin/shurik-control/friends-1\n2026-10-25T23:00:28.6365958Z  * [new branch]          shurik-control/friends-2 -> origin/shurik-control/friends-2\n2026-10-25T23:00:28.6366664Z  * [new branch]          shurik-control/friends-3 -> origin/shurik-control/friends-3\n2026-10-25T23:00:28.6367356Z  * [new branch]          shurik-control/friends-4 -> origin/shurik-control/friends-4\n2026-10-25T23:00:28.6368066Z  * [new branch]          shurik-control/friends-5 -> origin/shurik-control/friends-5\n2026-10-25T23:00:28.6369323Z [command]/usr/bin/git branch --list --remote origin/main\n2026-10-25T23:00:28.6369635Z   origin/main\n2026-10-25T23:00:28.6370271Z [command]/usr/bin/git rev-parse refs/remotes/origin/main\n2026-10-25T23:00:28.6370665Z 42832cdaa045b47e534a6bcd59040696567e7755\n2026-10-25T23:00:28.6372494Z ##[endgroup]\n2026-10-25T23:00:28.6373333Z ##[group]Determining the checkout info\n2026-10-25T23:00:28.6373966Z ##[endgroup]\n2026-10-25T23:00:28.6374362Z [command]/usr/bin/git sparse-checkout disable\n2026-10-25T23:00:28.6411284Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig\n2026-10-25T23:00:28.6438032Z ##[group]Checking out the ref\n2026-10-25T23:00:28.6440865Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main\n2026-10-25T23:00:28.8729245Z Switched to a new branch 'main'\n2026-10-25T23:00:28.8733106Z branch 'main' set up to track 'origin/main'.\n2026-10-25T23:00:28.8794791Z ##[endgroup]\n2026-10-25T23:00:28.8834113Z [command]/usr/bin/git log -1 --format=%H\n2026-10-25T23:00:28.8857142Z 42832cdaa045b47e534a6bcd59040696567e7755\n2026-10-25T23:00:28.8865001Z ##[group]Removing auth\n2026-10-25T23:00:28.8865403Z Removing SSH command configuration\n2026-10-25T23:00:28.8867863Z [command]/usr/bin/git config --local --name-only --get-regexp core\\.sshCommand\n2026-10-25T23:00:28.8895117Z [command]/usr/bin/git submodule foreach --recursive sh -c \"git config --local --name-only --get-regexp 'core\\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\"\n2026-10-25T23:00:28.9082612Z Removing HTTP extra header\n2026-10-25T23:00:28.9086712Z [command]/usr/bin/git config --local --name-only --get-regexp http\\.https\\:\\/\\/github\\.com\\/\\.extraheader\n2026-10-25T23:00:28.9116706Z [command]/usr/bin/git submodule foreach --recursive sh -c \"git config --local --name-only --get-regexp 'http\\.https\\:\\/\\/github\\.com\\/\\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\"\n2026-10-25T23:00:28.9302550Z Removing includeIf entries pointing to credentials config files\n2026-10-25T23:00:28.9306522Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\\.gitdir:\n2026-10-25T23:00:28.9334331Z includeif.gitdir:/home/runner/work/beetle-in-the-anthill/beetle-in-the-anthill/.git.path\n2026-10-25T23:00:28.9335078Z includeif.gitdir:/home/runner/work/beetle-in-the-anthill/beetle-in-the-anthill/.git/worktrees/*.path\n2026-10-25T23:00:28.9335557Z includeif.gitdir:/github/workspace/.git.path\n2026-10-25T23:00:28.9335904Z includeif.gitdir:/github/workspace/.git/worktrees/*.path\n2026-10-25T23:00:28.9342381Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/beetle-in-the-anthill/beetle-in-the-anthill/.git.path\n2026-10-25T23:00:28.9363684Z /home/runner/work/_temp/git-credentials-14a08f4e-f498-429a-9bba-7ce482bab275.config\n2026-10-25T23:00:28.9371982Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/beetle-in-the-anthill/beetle-in-the-anthill/.git.path /home/runner/work/_temp/git-credentials-14a08f4e-f498-429a-9bba-7ce482bab275.config\n2026-10-25T23:00:28.9403250Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/beetle-in-the-anthill/beetle-in-the-anthill/.git/worktrees/*.path\n2026-10-25T23:00:28.9423768Z /home/runner/work/_temp/git-credentials-14a08f4e-f498-429a-9bba-7ce482bab275.config\n2026-10-25T23:00:28.9431165Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/beetle-in-the-anthill/beetle-in-the-anthill/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-14a08f4e-f498-429a-9bba-7ce482bab275.config\n2026-10-25T23:00:28.9930196Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path\n2026-10-25T23:00:28.9954183Z /github/runner_temp/git-credentials-14a08f4e-f498-429a-9bba-7ce482bab275.config\n2026-10-25T23:00:28.9962934Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-14a08f4e-f498-429a-9bba-7ce482bab275.config\n2026-10-25T23:00:28.9998883Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path\n2026-10-25T23:00:29.0020131Z /github/runner_temp/git-credentials-14a08f4e-f498-429a-9bba-7ce482bab275.config\n2026-10-25T23:00:29.0026849Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-14a08f4e-f498-429a-9bba-7ce482bab275.config\n2026-10-25T23:00:29.0056289Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url\n2026-10-25T23:00:29.0242257Z Removing credentials config '/home/runner/work/_temp/git-credentials-14a08f4e-f498-429a-9bba-7ce482bab275.config'\n2026-10-25T23:00:29.0250154Z ##[endgroup]\n2026-10-25T23:00:29.0671229Z ##[group]Run igor-makarov/shurik@v2\n2026-10-25T23:00:29.0671763Z with:\n2026-10-25T23:00:29.0671978Z   command: iterate\n2026-10-25T23:00:29.0672458Z   inputs: {\n  \"command\": \"iterate\",\n  \"loop_id\": \"friends-3\",\n  \"create_pr\": \"false\",\n  \"wait-seconds\": \"1800\",\n  \"generation\": \"8\",\n  \"iteration\": \"450\"\n}\n2026-10-25T23:00:29.0672988Z   workflow: shurik.yml\n2026-10-25T23:00:29.0675249Z   token: ***\n2026-10-25T23:00:29.0675461Z env:\n2026-10-25T23:00:29.0675776Z   OPENCODE_API_KEY: ***\n2026-10-25T23:00:29.0676010Z ##[endgroup]\n2026-10-25T23:00:29.0721934Z ##[start-action display=Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38;id=shurik.__actions_setup-node]\n2026-10-25T23:00:29.0794411Z ##[group]Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38\n2026-10-25T23:00:29.0794769Z with:\n2026-10-25T23:00:29.0794982Z   node-version: 24.14.0\n2026-10-25T23:00:29.0795210Z   check-latest: false\n2026-10-25T23:00:29.0797229Z   token: ***\n2026-10-25T23:00:29.0797488Z   package-manager-cache: true\n2026-10-25T23:00:29.0797730Z env:\n2026-10-25T23:00:29.0798029Z   OPENCODE_API_KEY: ***\n2026-10-25T23:00:29.0798250Z ##[endgroup]\n2026-10-25T23:00:29.1854224Z Attempting to download 24.14.0...\n2026-10-25T23:00:30.0582437Z Acquiring 24.14.0 - x64 from https://github.com/actions/node-versions/releases/download/24.14.0-22380502845/node-24.14.0-linux-x64.tar.gz\n2026-10-25T23:00:30.7872469Z Extracting ...\n2026-10-25T23:00:30.7969655Z [command]/usr/bin/tar xz --strip 1 --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/1adf2181-6a20-48e0-bc65-b4370b6a4a7f -f /home/runner/work/_temp/a001932d-3755-460a-8dcf-aa6a719f6541\n2026-10-25T23:00:31.8035587Z Adding to the cache ...\n2026-10-25T23:00:33.8945080Z ##[group]Environment details\n2026-10-25T23:00:34.0672367Z node: v24.14.0\n2026-10-25T23:00:34.0672824Z npm: 11.9.0\n2026-10-25T23:00:34.0673064Z yarn: 1.22.22\n2026-10-25T23:00:34.0673614Z ##[endgroup]\n2026-10-25T23:00:34.0810011Z ##[end-action id=shurik.__actions_setup-node;outcome=success;conclusion=success;duration_ms=5008]\n2026-10-25T23:00:34.0818328Z ##[start-action display=Run Shurik CLI;id=shurik.shurik]\n2026-10-25T23:00:34.0844616Z ##[group]Run node \"$SHURIK_ACTION_PATH/action/run.ts\"\n2026-10-25T23:00:34.0844982Z \u001b[36;1mnode \"$SHURIK_ACTION_PATH/action/run.ts\"\u001b[0m\n2026-10-25T23:00:34.1040837Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}\n2026-10-25T23:00:34.1041154Z env:\n2026-10-25T23:00:34.1041759Z   OPENCODE_API_KEY: ***\n2026-10-25T23:00:34.1042037Z   SHURIK_ACTION_PATH: /home/runner/work/_actions/igor-makarov/shurik/v2\n2026-10-25T23:00:34.1042366Z   SHURIK_ACTION_REPOSITORY: igor-makarov/shurik\n2026-10-25T23:00:34.1042610Z   SHURIK_ACTION_REF: v2\n2026-10-25T23:00:34.1043064Z   SHURIK_INPUTS: {\n  \"command\": \"iterate\",\n  \"loop_id\": \"friends-3\",\n  \"create_pr\": \"false\",\n  \"wait-seconds\": \"1800\",\n  \"generation\": \"8\",\n  \"iteration\": \"450\"\n}\n2026-10-25T23:00:34.1043547Z   SHURIK_COMMAND: iterate\n2026-10-25T23:00:34.1043748Z   SHURIK_LOOP_ID: \n2026-10-25T23:00:34.1043925Z   SHURIK_MODEL: \n2026-10-25T23:00:34.1044085Z   SHURIK_SWARM: \n2026-10-25T23:00:34.1044246Z   SHURIK_PROMPT: \n2026-10-25T23:00:34.1044432Z   SHURIK_CHECKPOINT_SECONDS: \n2026-10-25T23:00:34.1044749Z   SHURIK_CHECKPOINT_PATHS: \n2026-10-25T23:00:34.1045019Z   SHURIK_CREATE_PR: \n2026-10-25T23:00:34.1045293Z   SHURIK_SECONDS: \n2026-10-25T23:00:34.1045539Z   SHURIK_WORK_SECONDS: \n2026-10-25T23:00:34.1045803Z   SHURIK_WAIT_SECONDS: \n2026-10-25T23:00:34.1046046Z   SHURIK_DEADLINE: \n2026-10-25T23:00:34.1046212Z   SHURIK_SOURCE_REF: \n2026-10-25T23:00:34.1046387Z   SHURIK_GENERATION: \n2026-10-25T23:00:34.1046558Z   SHURIK_ITERATION: \n2026-10-25T23:00:34.1046739Z   SHURIK_WORKFLOW: shurik.yml\n2026-10-25T23:00:34.1048763Z   GITHUB_TOKEN: ***\n2026-10-25T23:00:34.1048947Z ##[endgroup]\n2026-10-25T23:01:15.7833817Z Iteration 8-450: agent_failure; loop running\n2026-10-25T23:01:15.7836011Z Iteration 8-450 failed: {\"conversationId\":1,\"requestId\":\"friends-3:8-450\",\"type\":\"input\",\"status\":\"unanswered\",\"entry\":9,\"id\":10,\"reason\":\"model_error\",\"detail\":\"Server requested 3531s retry delay (max: 60s). 429 Upstream request failed: Rate limit exceeded. Please try again later.\"}\n2026-10-25T23:01:16.1029496Z Loop friends-3: Waiting until 2026-10-25T23:31:14.422Z\n2026-10-25T23:01:16.1245239Z ##[error]Process completed with exit code 2.\n2026-10-25T23:01:16.1273524Z ##[end-action id=shurik.shurik;outcome=failure;conclusion=failure;duration_ms=42045]\n2026-10-25T23:01:16.1363297Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\n2026-10-25T23:01:16.1363634Z with:\n2026-10-25T23:01:16.1363813Z   name: shurik-emergency-40242752553\n2026-10-25T23:01:16.1364191Z   path: /home/runner/.shurik/emergency/igor-makarov/beetle-in-the-anthill/friends-3/40242752553-1\n2026-10-25T23:01:16.1364562Z   include-hidden-files: true\n2026-10-25T23:01:16.1364774Z   if-no-files-found: ignore\n2026-10-25T23:01:16.1364965Z   retention-days: 7\n2026-10-25T23:01:16.1365149Z   compression-level: 6\n2026-10-25T23:01:16.1365330Z   overwrite: false\n2026-10-25T23:01:16.1365500Z ##[endgroup]\n2026-10-25T23:01:16.2671933Z (node:2986) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.\n2026-10-25T23:01:16.2672628Z (Use `node --trace-deprecation ...` to show where the warning was created)\n2026-10-25T23:01:16.2704507Z No files were found with the provided path: /home/runner/.shurik/emergency/igor-makarov/beetle-in-the-anthill/friends-3/40242752553-1. No artifacts will be uploaded.\n2026-10-25T23:01:16.2954268Z Post job cleanup.\n2026-10-25T23:01:16.2960403Z ##[start-action display=Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38;id=__e7d991e4-49a9-44b7-93f5-653a6a73c98b.__actions_setup-node]\n2026-10-25T23:01:16.2965502Z ##[end-action id=__e7d991e4-49a9-44b7-93f5-653a6a73c98b.__actions_setup-node;outcome=skipped;conclusion=skipped;duration_ms=0]\n2026-10-25T23:01:16.3040786Z Post job cleanup.\n2026-10-25T23:01:16.3727807Z [command]/usr/bin/git version\n2026-10-25T23:01:16.3760623Z git version 2.55.0\n2026-10-25T23:01:16.3791203Z Temporarily overriding HOME='/home/runner/work/_temp/ff5fd4cd-2978-4a9c-b004-418b74c2bbab' before making global git config changes\n2026-10-25T23:01:16.3792536Z Adding repository directory to the temporary git global config as a safe directory\n2026-10-25T23:01:16.3795134Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/beetle-in-the-anthill/beetle-in-the-anthill\n2026-10-25T23:01:16.3822832Z Removing SSH command configuration\n2026-10-25T23:01:16.3828720Z [command]/usr/bin/git config --local --name-only --get-regexp core\\.sshCommand\n2026-10-25T23:01:16.3858872Z [command]/usr/bin/git submodule foreach --recursive sh -c \"git config --local --name-only --get-regexp 'core\\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\"\n2026-10-25T23:01:16.4060992Z Removing HTTP extra header\n2026-10-25T23:01:16.4066587Z [command]/usr/bin/git config --local --name-only --get-regexp http\\.https\\:\\/\\/github\\.com\\/\\.extraheader\n2026-10-25T23:01:16.4122781Z [command]/usr/bin/git submodule foreach --recursive sh -c \"git config --local --name-only --get-regexp 'http\\.https\\:\\/\\/github\\.com\\/\\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\"\n2026-10-25T23:01:16.4304205Z Removing includeIf entries pointing to credentials config files\n2026-10-25T23:01:16.4314346Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\\.gitdir:\n2026-10-25T23:01:16.4352112Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url\n2026-10-25T23:01:16.4696794Z Cleaning up orphan processes\n2026-10-25T23:01:16.4990917Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/\n",
+        "truncated": true,
+        "downloadLimited": false
+      }
+    },
+    {
+      "id": 121317892187,
+      "name": "control",
+      "conclusion": "skipped",
+      "steps": [],
+      "logUnavailable": "Error: GitHub job logs: 404"
+    },
+    {
+      "id": 121318144489,
+      "name": "recovery",
+      "conclusion": null,
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "number": 2,
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "conclusion": "success"
+        },
+        {
+          "number": 3,
+          "name": "Run igor-makarov/shurik@v2",
+          "conclusion": null
+        },
+        {
+          "number": 4,
+          "name": "Wait for this loop's next iteration",
+          "conclusion": null
+        },
+        {
+          "number": 5,
+          "name": "Recover after the saved wait",
+          "conclusion": null
+        },
+        {
+          "number": 9,
+          "name": "Post Run igor-makarov/shurik@v2",
+          "conclusion": null
+        },
+        {
+          "number": 10,
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "conclusion": null
+        }
+      ],
+      "logUnavailable": "Error: GitHub job logs: 404"
+    }
+  ],
+  "jobsTruncated": false
+}
